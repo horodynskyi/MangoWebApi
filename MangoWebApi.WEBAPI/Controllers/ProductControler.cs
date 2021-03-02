@@ -37,16 +37,16 @@ namespace MangoWebApi.WEBAPI.Controllers
         public async Task<IActionResult> Get()
         {
             
-            if (await _cache.GetRecordAsync<IEnumerable<Product>>(typeof(Product).Name) is null)
-            {
+           // if (await _cache.GetRecordAsync<IEnumerable<Product>>(typeof(Product).Name) is null)
+           // {
                 var result = await _productService.Get();
                //// await _cache.SetRecordAsync<IEnumerable<Product>>(typeof(Product).Name, result);
                 return new JsonResult(result);
-            }
-            else
-            {
-               // return new JsonResult(await _cache.GetRecordAsync<IEnumerable<Product>>(typeof(Product).Name));
-            }
+           // }
+            //else
+            //{
+            //    return new JsonResult(await _cache.GetRecordAsync<IEnumerable<Product>>(typeof(Product).Name));
+            //}
            
 
            
