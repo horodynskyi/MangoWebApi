@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MangoWebApi.WEBAPI", "MangoWebApi.WEBAPI\MangoWebApi.WEBAPI.csproj", "{8B4FA9D4-CD99-4EE3-B177-EF3AFFF9F683}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MangoWebApi.DAL", "MangoWebApi.DAL\MangoWebApi.DAL.csproj", "{5AE1B9A5-2D25-4E7E-9A79-6EA24D3C82F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MangoWebApi.Repositories", "MangoWebApi.Repositories\MangoWebApi.Repositories.csproj", "{5DC26E22-A3C6-46BB-BA2B-976FF16D667B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MangoWebApi.BLL", "MangoWebApi.BLL\MangoWebApi.BLL.csproj", "{92A22025-4168-4528-974E-F392D340F371}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MangoWebApi.Redis", "MangoWebApi.Redis\MangoWebApi.Redis.csproj", "{D2D309EE-ADEB-46F8-8F6B-BB3D630FBEB0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B4FA9D4-CD99-4EE3-B177-EF3AFFF9F683}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B4FA9D4-CD99-4EE3-B177-EF3AFFF9F683}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B4FA9D4-CD99-4EE3-B177-EF3AFFF9F683}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B4FA9D4-CD99-4EE3-B177-EF3AFFF9F683}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AE1B9A5-2D25-4E7E-9A79-6EA24D3C82F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AE1B9A5-2D25-4E7E-9A79-6EA24D3C82F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AE1B9A5-2D25-4E7E-9A79-6EA24D3C82F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AE1B9A5-2D25-4E7E-9A79-6EA24D3C82F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DC26E22-A3C6-46BB-BA2B-976FF16D667B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DC26E22-A3C6-46BB-BA2B-976FF16D667B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DC26E22-A3C6-46BB-BA2B-976FF16D667B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DC26E22-A3C6-46BB-BA2B-976FF16D667B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92A22025-4168-4528-974E-F392D340F371}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92A22025-4168-4528-974E-F392D340F371}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92A22025-4168-4528-974E-F392D340F371}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92A22025-4168-4528-974E-F392D340F371}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2D309EE-ADEB-46F8-8F6B-BB3D630FBEB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2D309EE-ADEB-46F8-8F6B-BB3D630FBEB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2D309EE-ADEB-46F8-8F6B-BB3D630FBEB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2D309EE-ADEB-46F8-8F6B-BB3D630FBEB0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {12CB57F3-0070-4F31-AC71-1A411660E716}
+	EndGlobalSection
+EndGlobal
