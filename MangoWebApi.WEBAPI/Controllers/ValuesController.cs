@@ -1,7 +1,10 @@
 ﻿using MangoWebApi.BLL.Interfaces;
 using MangoWebApi.DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Distributed;
 using System.Threading.Tasks;
+using MangoWebApi.Redis;
+using System.Collections.Generic;
 
 namespace MangoWebApi.WEBAPI.Controllers
 {
@@ -10,17 +13,28 @@ namespace MangoWebApi.WEBAPI.Controllers
     public class ValuesController:ControllerBase
     {
         private readonly IValuesService _valueService;
-        public ValuesController(IValuesService valueService)
+        private readonly IDistributedCache _cache;
+        public ValuesController(IValuesService valueService,
+        IDistributedCache cache)
         {
             _valueService = valueService;
+            _cache = cache;
         }
 
         #region APIs
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var result = await _valueService.Get();
-            return Ok(result);
+           if (await _cache.GetRecordAsync<IEnumerable<Values>>(typeof(Values).Name + "Get") is null)
+            {
+                var result = await _valueService.Get();
+                await _cache.SetRecordAsync<IEnumerable<Values>>(typeof(Values).Name+"Get", result);
+                return new JsonResult(result);
+           }
+            else
+            {
+                return new JsonResult(await _cache.GetRecordAsync<IEnumerable<Values>>(typeof(Values).Name + "Get"));
+           } 
         }
 
         [HttpGet("{id}")]
