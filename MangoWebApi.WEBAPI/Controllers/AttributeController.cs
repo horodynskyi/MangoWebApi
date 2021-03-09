@@ -1,8 +1,10 @@
 ﻿using MangoWebApi.BLL.Interfaces;
 using MangoWebApi.DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.Extensions.Caching.Distributed;
 using System.Threading.Tasks;
+using MangoWebApi.Redis;
+using System.Collections.Generic;
 
 namespace MangoWebApi.WEBAPI.Controllers
 {
@@ -11,17 +13,29 @@ namespace MangoWebApi.WEBAPI.Controllers
     public class AttributeController:ControllerBase
     {
         private readonly IAttributeService _attributeService;
-        public AttributeController(IAttributeService attributeService)
+        private readonly IDistributedCache _cache;
+        public AttributeController(IAttributeService attributeService,
+                IDistributedCache cache
+)
         {
             _attributeService = attributeService;
+            _cache = cache;
         }
 
         #region APIs
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var result = await _attributeService.Get();
-            return Ok(result);
+            if (await _cache.GetRecordAsync<IEnumerable<Attribute>>(typeof(Attribute).Name + "Get") is null)
+            {
+                var result = await _attributeService.Get();
+                await _cache.SetRecordAsync<IEnumerable<Attribute>>(typeof(Attribute).Name+"Get", result);
+                return new JsonResult(result);
+           }
+            else
+            {
+                return new JsonResult(await _cache.GetRecordAsync<IEnumerable<Attribute>>(typeof(Attribute).Name + "Get"));
+           }  
         }
 
         [HttpGet("{id}")]

@@ -1,8 +1,10 @@
 ﻿using MangoWebApi.BLL.Interfaces;
 using MangoWebApi.DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using Microsoft.Extensions.Caching.Distributed;
 using System.Threading.Tasks;
+using MangoWebApi.Redis;
+using System.Collections.Generic;
 
 namespace MangoWebApi.WEBAPI.Controllers
 {
@@ -12,12 +14,15 @@ namespace MangoWebApi.WEBAPI.Controllers
     {
         #region Propertirs
         private readonly ICategoryService _categoryService;
+        private readonly IDistributedCache _cache;
         #endregion
 
         #region Constructors
-        public CategoryController(ICategoryService categoryService)
+        public CategoryController(ICategoryService categoryService,
+        IDistributedCache cache)
         {
             _categoryService = categoryService;
+            _cache = cache;
         }
 
         #endregion
@@ -26,15 +31,30 @@ namespace MangoWebApi.WEBAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var result = await _categoryService.Get();
-            return Ok(result);
+            if (await _cache.GetRecordAsync<IEnumerable<Categories>>(typeof(Categories).Name + "Get") is null)
+            {
+                var result = await _categoryService.Get();
+                await _cache.SetRecordAsync<IEnumerable<Categories>>(typeof(Categories).Name+"Get", result);
+                return new JsonResult(result);
+           }
+            else
+            {
+                return new JsonResult(await _cache.GetRecordAsync<IEnumerable<Categories>>(typeof(Categories).Name + "Get"));
+           } 
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
+            if (await _cache.GetRecordAsync<IEnumerable<Categories>>(typeof(Categories).Name + "GetById"+id) is null)
+            {
             var result = await _categoryService.GetById(id);
+            await _cache.SetRecordAsync<Categories>(typeof(Categories).Name+"GetById"+id,result);
             return new JsonResult(result);
+            }
+            else{
+                return new JsonResult(await _cache.GetRecordAsync<Categories>(typeof(Categories).Name + "GetById"+id));
+            }
         }
 
         [HttpPost]

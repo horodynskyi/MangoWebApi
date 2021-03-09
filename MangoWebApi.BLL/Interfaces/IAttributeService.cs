@@ -1,5 +1,4 @@
-﻿
-using MangoWebApi.DAL.Entities;
+﻿using MangoWebApi.DAL.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

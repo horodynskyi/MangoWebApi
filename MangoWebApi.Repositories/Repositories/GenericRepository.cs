@@ -1,11 +1,7 @@
 ﻿using MangoWebApi.DAL.Interfaces;
 using MangoWebApi.Repositories.Interfaces;
-using MongoDB.Bson;
 using MongoDB.Driver;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MangoWebApi.Repositories.Repositories
@@ -13,20 +9,18 @@ namespace MangoWebApi.Repositories.Repositories
     public class GenericRepository<TEntity, TId> : IGenericRepository<TEntity, TId> where TEntity : class, IEntity<TId>
     {
         private readonly IMongoCollection<TEntity> _collection;
-    
+      
         public GenericRepository(IMongoClient client)
         {
+
             var database = client.GetDatabase("Shop");
             var collection = database.GetCollection<TEntity>(typeof(TEntity).Name);
-
             _collection = collection;
         }
 
         public async Task<TEntity> Add(TEntity entity)
         {
-            await _collection.InsertOneAsync(entity);
-            
-
+            await _collection.InsertOneAsync(entity);          
             return entity;
         }
 
