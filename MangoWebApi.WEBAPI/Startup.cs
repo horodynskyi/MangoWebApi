@@ -1,6 +1,5 @@
 ﻿using MangoWebApi.BLL.Interfaces;
 using MangoWebApi.BLL.Services;
-using MangoWebApi.Infrastracture;
 using MangoWebApi.Repositories.Interfaces;
 using MangoWebApi.Repositories.Interfaces.Repositories;
 using MangoWebApi.Repositories.Repositories;
@@ -29,10 +28,7 @@ namespace MangoWebApi.WEBAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddSingleton<ServerConfig>();
-            //services.AddSingleton<MongoDBConfig>();
-            //var config = new ServerConfig();
-            //Configuration.Bind(config);
+            
 
             services.AddControllers();
             services.AddSingleton<IMongoClient, MongoClient>(sp => new MongoClient(Configuration.GetConnectionString("MongoDB")));

@@ -6,7 +6,7 @@ namespace MangoWebApi.DAL.Entities
     public class Attribute : IEntity<int>
     {
         [BsonId]
-        public int id { get; set; }
+        public int Id { get; set; }
         public string title { get; set; }
         public string slug { get; set; }
         public string type { get; set; }

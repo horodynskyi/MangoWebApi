@@ -15,7 +15,6 @@ COPY ["MangoWebApi.Redis/MangoWebApi.Redis.csproj", "MangoWebApi.Redis/"]
 COPY ["MangoWebApi.DAL/MangoWebApi.DAL.csproj", "MangoWebApi.DAL/"]
 COPY ["MangoWebApi.Repositories/MangoWebApi.Repositories.csproj", "MangoWebApi.Repositories/"]
 COPY ["MangoWebApi.BLL/MangoWebApi.BLL.csproj", "MangoWebApi.BLL/"]
-COPY ["MangoWebApi.Infrastracture/MangoWebApi.Infrastracture.csproj", "MangoWebApi.BLL/"]
 RUN dotnet restore "MangoWebApi.WEBAPI/MangoWebApi.WEBAPI.csproj"
 COPY . .
 WORKDIR "/src/MangoWebApi.WEBAPI"

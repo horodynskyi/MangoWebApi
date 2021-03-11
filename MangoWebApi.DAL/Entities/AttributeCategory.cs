@@ -5,9 +5,9 @@ namespace MangoWebApi.DAL.Entities
     public class AttributeCategory
     {
         [BsonId]
-        Categories categoryId { get; set; }
+        Categories CategoryId { get; set; }
         [BsonId]
-        Attribute attributeId { get; set; }
+        Attribute AttributeId { get; set; }
 
 
     }

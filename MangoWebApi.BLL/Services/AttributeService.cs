@@ -3,8 +3,6 @@ using MangoWebApi.DAL.Entities;
 using MangoWebApi.Repositories.Interfaces;
 
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MangoWebApi.BLL.Services

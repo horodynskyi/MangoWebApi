@@ -6,7 +6,7 @@ namespace MangoWebApi.DAL.Entities
     public class Categories : IEntity<int>
     {
         [BsonId]
-        public int id { get; set; }
+        public int Id { get; set; }
         public string name { get; set; }
 
 

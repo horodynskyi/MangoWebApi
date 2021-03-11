@@ -35,14 +35,14 @@ namespace MangoWebApi.Repositories.Repositories
         public async Task<TEntity> GetById(TId id)
         {
 
-            var filter = Builders<TEntity>.Filter.Eq(c => c.id, id);
+            var filter = Builders<TEntity>.Filter.Eq(c => c.Id, id);
             var collection = await _collection.Find(filter).FirstOrDefaultAsync();
             return collection;
         }
 
         public async Task<bool> Update(TId id, TEntity entity)
         {
-            var filter = Builders<TEntity>.Filter.Eq(c => c.id, id);
+            var filter = Builders<TEntity>.Filter.Eq(c => c.Id, id);
             var update = Builders<TEntity>.Update
                 .Set(c => c, entity);
             var result = await _collection.UpdateOneAsync(filter, update);
@@ -52,7 +52,7 @@ namespace MangoWebApi.Repositories.Repositories
 
         public async Task<bool> Delete(TId id)
         {
-            var filter = Builders<TEntity>.Filter.Eq(c => c.id, id);
+            var filter = Builders<TEntity>.Filter.Eq(c => c.Id, id);
             var result = await _collection.DeleteOneAsync(filter);
 
             return result.DeletedCount == 1;

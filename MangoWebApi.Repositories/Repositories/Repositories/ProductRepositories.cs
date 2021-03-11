@@ -2,6 +2,7 @@
 using MangoWebApi.Repositories.Interfaces;
 using MongoDB.Driver;
 using System.Threading.Tasks;
+using MangoWebApi.Repositories.Interfaces.Repositories;
 
 namespace MangoWebApi.Repositories.Repositories
 {

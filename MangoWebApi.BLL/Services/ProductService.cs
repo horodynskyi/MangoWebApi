@@ -8,7 +8,7 @@ namespace MangoWebApi.BLL.Services
 {
     public class ProductService:IProductService
     {
-        IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         public ProductService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;

@@ -1,22 +1,22 @@
-﻿using MangoWebApi.BLL.Interfaces;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using MangoWebApi.BLL.Interfaces;
 using MangoWebApi.DAL.Entities;
 using MangoWebApi.Redis;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace MangoWebApi.WEBAPI.Controllers
 {
 
     [ApiController]
     [Route("[controller]")]
-    public class ProductControler : ControllerBase
+    public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
         
         private readonly IDistributedCache _cache;
-        public ProductControler(IProductService productService,
+        public ProductController(IProductService productService,
              
               IDistributedCache cache)
         {
@@ -36,24 +36,21 @@ namespace MangoWebApi.WEBAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            
-            if (await _cache.GetRecordAsync<IEnumerable<Product>>(typeof(Product).Name + "Get") is null)
+
+            if (await _cache.GetRecordAsync<IEnumerable<Product>>(nameof(Product) + "Get") is null)
             {
                 var result = await _productService.Get();
-                await _cache.SetRecordAsync<IEnumerable<Product>>(typeof(Product).Name+"Get", result);
+                await _cache.SetRecordAsync(nameof(Product)+"Get", result);
                 return new JsonResult(result);
-           }
-            else
-            {
-                return new JsonResult(await _cache.GetRecordAsync<IEnumerable<Product>>(typeof(Product).Name + "Get"));
-           }  
+            }
+
+            return new JsonResult(await _cache.GetRecordAsync<IEnumerable<Product>>(nameof(Product) + "Get"));
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            string recordKey = "Products" + id;
-          
+
             var result = await _productService.GetById(id);
 
             return new JsonResult(result);

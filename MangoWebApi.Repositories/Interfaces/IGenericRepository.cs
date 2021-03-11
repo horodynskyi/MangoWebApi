@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace MangoWebApi.Repositories.Interfaces
 {
-    public interface IGenericRepository<TEntity, TId> where TEntity : class, IEntity<TId>
+    public interface IGenericRepository<TEntity, in TId> where TEntity : class, IEntity<TId>
     {
         Task<TEntity> Add(TEntity entity);
         Task<IEnumerable<TEntity>> Get();
